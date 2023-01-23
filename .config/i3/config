@@ -1,0 +1,107 @@
+set $win Mod4
+set $alt Mod1
+
+font pango: monospace 11
+
+for_window [class="^.*"] border pixel 1
+gaps inner 7
+gaps outer 0
+
+floating_modifier $win
+
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -fps 60 -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -fps 60 -dec 5
+#bindsym  exec --no-startup-id
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+bindsym Print exec --no-startup-id scrot ~/Screenshots/%Y-%m-%d-%H-%M-%S.png
+
+bindsym $win+Return exec --no-startup-id st
+bindsym $win+w exec --no-startup-id chromium
+bindsym $win+e exec --no-startup-id pcmanfm
+bindsym $win+c exec --no-startup-id code ~/dev
+bindsym $win+q kill
+
+bindsym $win+Left focus left
+bindsym $win+Down focus down
+bindsym $win+Up focus up
+bindsym $win+Right focus right
+
+bindsym $win+Shift+Left move left
+bindsym $win+Shift+Down move down
+bindsym $win+Shift+Up move up
+bindsym $win+Shift+Right move right
+
+bindsym $alt+$win+Left resize shrink width 10 px or 10 ppt
+bindsym $alt+$win+Down resize grow height 10 px or 10 ppt
+bindsym $alt+$win+Up resize shrink height 10 px or 10 ppt
+bindsym $alt+$win+Right resize grow width 10 px or 10 ppt
+
+bindsym $win+h split h
+bindsym $win+v split v
+
+bindsym $win+f fullscreen toggle
+
+bindsym $win+space floating toggle
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $win+1 workspace number $ws1
+bindsym $win+2 workspace number $ws2
+bindsym $win+3 workspace number $ws3
+bindsym $win+4 workspace number $ws4
+bindsym $win+5 workspace number $ws5
+bindsym $win+6 workspace number $ws6
+bindsym $win+7 workspace number $ws7
+bindsym $win+8 workspace number $ws8
+bindsym $win+9 workspace number $ws9
+bindsym $win+0 workspace number $ws10
+
+bindsym $alt+1 move container to workspace number $ws1
+bindsym $alt+2 move container to workspace number $ws2
+bindsym $alt+3 move container to workspace number $ws3
+bindsym $alt+4 move container to workspace number $ws4
+bindsym $alt+5 move container to workspace number $ws5
+bindsym $alt+6 move container to workspace number $ws6
+bindsym $alt+7 move container to workspace number $ws7
+bindsym $alt+8 move container to workspace number $ws8
+bindsym $alt+9 move container to workspace number $ws9
+bindsym $alt+0 move container to workspace number $ws10
+
+bindsym $win+Shift+c reload
+bindsym $win+Shift+r restart
+bindsym $win+Shift+e exec i3-msg exit
+
+
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color9 #f0f0f0
+set_from_resource $zero i3wm.color0 #f0f0f0
+set_from_resource $one i3wm.color1 #f0f0f0
+set_from_resource $fifteen i3wm.color15 #f0f0f0
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+bindsym $win+d exec rofi -show run
+
+exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id /home/vin/.local/bin/autotiling -l 4
