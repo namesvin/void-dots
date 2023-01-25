@@ -23,7 +23,7 @@ bindsym Print exec --no-startup-id scrot ~/Screenshots/%Y-%m-%d-%H-%M-%S.png
 bindsym $win+Return exec --no-startup-id st
 bindsym $win+w exec --no-startup-id chromium
 bindsym $win+e exec --no-startup-id pcmanfm
-bindsym $win+c exec --no-startup-id code ~/dev
+bindsym $win+c exec --no-startup-id code-oss ~/Dev
 bindsym $win+q kill
 
 bindsym $win+Left focus left
